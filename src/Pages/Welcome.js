@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import ListBox from "../Components/ListBox";
 
@@ -40,6 +41,13 @@ function Welcome() {
         {categories && <ListBox title="Select Category" data={categories} />}
         <ListBox title="Select Difficulty" data={difficulties} />
         <ListBox title="Select Type" data={types} />
+
+        <Link
+          to="quiz"
+          className="bg-slate-500 text-white w-72 py-2 text-center rounded-lg shadow-lg font-semibold"
+        >
+          Start Quiz
+        </Link>
       </div>
     </div>
   );
