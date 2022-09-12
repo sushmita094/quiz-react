@@ -12,7 +12,7 @@ function QuestionCard({ data }) {
           <React.Fragment key={answer}>
             <label
               htmlFor={answer}
-              className="border-2 border-slate-300 rounded p-4 text-lg font-medium leading-6"
+              className="rounded-md p-4 text-lg font-medium leading-6 bg-white border border-slate-200 text-slate-700"
             >
               {answer}
             </label>

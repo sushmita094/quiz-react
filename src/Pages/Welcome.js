@@ -34,27 +34,27 @@ function Welcome() {
   }, []);
 
   return (
-    <div className="p-6 bg-slate-50 min-h-screen">
-      <h1 className="text-center text-3xl font-bold">Welcome!</h1>
+    <div className="p-6 bg-slate-50 min-h-screen flex justify-center">
+      <div className="md:w-4/5 lg:w-3/5 2xl:w-1/2">
+        <h1 className="text-center text-3xl font-semibold text-slate-900">
+          Welcome!
+        </h1>
 
-      <div className="flex flex-col items-center gap-y-8 mt-10">
-        {categories && <ListBox title="Select Category" data={categories} />}
-        <ListBox title="Select Difficulty" data={difficulties} />
-        <ListBox title="Select Type" data={types} />
+        <div className="flex flex-col items-center gap-y-8 mt-10">
+          {categories && <ListBox title="Select Category" data={categories} />}
+          <ListBox title="Select Difficulty" data={difficulties} />
+          <ListBox title="Select Type" data={types} />
 
-        <Link
-          to="quiz"
-          className="bg-slate-500 text-white w-72 py-2 text-center rounded-lg shadow-lg font-semibold"
-        >
-          Start Quiz
-        </Link>
+          <Link
+            to="quiz"
+            className="text-lg leading-6 bg-sky-800 text-white w-full py-3 font-semibold rounded-md shadow-lg hover:shadow-xl transition-shadow shadow-slate-300 hover:shadow-slate-300 text-center"
+          >
+            Start Quiz
+          </Link>
+        </div>
       </div>
     </div>
   );
 }
 
 export default Welcome;
-
-/*
-
-*/
