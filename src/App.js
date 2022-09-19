@@ -19,12 +19,3 @@ function App() {
 }
 
 export default App;
-
-/*
-Quiz App Todos:
-- Complete quiz page
-- Add result page
-- Refine the UI and add colors
-
-# Complete the UI first before moving on to integration
-*/

@@ -1,9 +1,7 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 
-function ListBox({ title, data }) {
-  const [selected, setSelected] = useState(data[0]);
-
+const ListBox = ({ title, data, selected, setSelected }) => {
   return (
     <div className="w-full">
       <p className="text-slate-600 text-sm font-medium">{title}</p>
@@ -12,7 +10,12 @@ function ListBox({ title, data }) {
           <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-2 pl-3 pr-10 text-left shadow-md shadow-slate-200 focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
             <span className="block truncate">{selected.name}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-              {/* <SelectorIcon /> */}
+              <img
+                src="/icons/selector.svg"
+                alt="select"
+                width={12}
+                height={12}
+              />
             </span>
           </Listbox.Button>
           <Transition
@@ -43,7 +46,12 @@ function ListBox({ title, data }) {
                       </span>
                       {selected ? (
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
-                          {/* <CheckIcon /> */}
+                          <img
+                            src="/icons/tick.svg"
+                            alt="check"
+                            width={16}
+                            height={16}
+                          />
                         </span>
                       ) : null}
                     </>
@@ -56,6 +64,6 @@ function ListBox({ title, data }) {
       </Listbox>
     </div>
   );
-}
+};
 
 export default ListBox;
