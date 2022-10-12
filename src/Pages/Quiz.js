@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import QuestionCard from "../Components/QuestionCard";
 
-import { setScore } from "./../features/quiz/quizSlice";
+import { setScore, setUserAnswers } from "./../features/quiz/quizSlice";
 
 const Quiz = () => {
   const questions = useSelector((state) => state.quiz.questions);
@@ -13,21 +13,16 @@ const Quiz = () => {
   const dispatch = useDispatch();
 
   const [currentQues, setCurrentQues] = useState(0);
-  const [answers, setAnswers] = useState({});
+  const [answers, setAnswers] = useState([]);
 
   useEffect(() => {
-    let obj = {};
+    let arr = [];
     for (let i = 0; i < options.amount; i++) {
-      obj[i] = [];
+      arr[i] = [];
     }
-    setAnswers({ ...obj });
+    setAnswers([...arr]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const handleRecordAnswers = (answer) => {
-    let currentAnswers = { ...answers };
-    currentAnswers[currentQues] = answer;
-    setAnswers({ ...currentAnswers });
-  };
 
   const handleNextButton = () => {
     if (currentQues === options.amount - 1) {
@@ -37,7 +32,15 @@ const Quiz = () => {
     }
   };
 
+  const handleRecordAnswers = (answer) => {
+    let currentAnswers = [...answers];
+    currentAnswers[currentQues] = answer;
+    setAnswers([...currentAnswers]);
+  };
+
   const computeResult = () => {
+    dispatch(setUserAnswers(answers));
+
     let score = 0;
     for (let i = 0; i < questions.length; i++) {
       if (typeof questions[i].correct_answer === "string") {
@@ -53,7 +56,7 @@ const Quiz = () => {
 
   return (
     <div className="p-6 bg-slate-50 min-h-screen flex justify-center">
-      <div className="md:w-4/5 lg:w-3/5 2xl:w-1/2">
+      <div className="w-full sm:w-4/5 lg:w-3/5 2xl:w-1/2">
         <div className="bg-white mb-6 flex items-center px-4 py-2 shadow-xl rounded-full shadow-slate-200 gap-x-2 md:mb-14">
           <div className="bg-slate-100 grow rounded-full h-3">
             <div

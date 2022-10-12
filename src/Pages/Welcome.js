@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -19,8 +19,35 @@ const types = [
   { name: "True/False", value: "boolean" },
 ];
 
+const categories = [
+  { id: "", name: "Any Category" },
+  { id: 9, name: "General Knowledge" },
+  { id: 10, name: "Entertainment: Books" },
+  { id: 11, name: "Entertainment: Film" },
+  { id: 12, name: "Entertainment: Music" },
+  { id: 13, name: "Entertainment: Musicals & Theatres" },
+  { id: 14, name: "Entertainment: Television" },
+  { id: 15, name: "Entertainment: Video Games" },
+  { id: 16, name: "Entertainment: Board Games" },
+  { id: 17, name: "Science & Nature" },
+  { id: 18, name: "Science: Computers" },
+  { id: 19, name: "Science: Mathematics" },
+  { id: 20, name: "Mythology" },
+  { id: 21, name: "Sports" },
+  { id: 22, name: "Geography" },
+  { id: 23, name: "History" },
+  { id: 24, name: "Politics" },
+  { id: 25, name: "Art" },
+  { id: 26, name: "Celebrities" },
+  { id: 27, name: "Animals" },
+  { id: 28, name: "Vehicles" },
+  { id: 29, name: "Entertainment: Comics" },
+  { id: 30, name: "Science: Gadgets" },
+  { id: 31, name: "Entertainment: Japanese Anime & Manga" },
+  { id: 32, name: "Entertainment: Cartoon & Animations" },
+];
+
 const Welcome = () => {
-  const [categories, setCategories] = useState(null);
   const [difficulty, setDifficulty] = useState(difficulties[0]);
   const [type, setType] = useState(types[0]);
   const [category, setCategory] = useState(categories ? categories[0] : null);
@@ -29,20 +56,6 @@ const Welcome = () => {
   const dispatch = useDispatch();
 
   let navigate = useNavigate();
-
-  useEffect(() => {
-    fetch("https://opentdb.com/api_category.php")
-      .then((data) => data.json())
-      .then((json) => {
-        let categories = [
-          { id: "", name: "Any Category" },
-          ...json.trivia_categories,
-        ];
-        setCategories([...categories]);
-        setCategory(categories[0]);
-      })
-      .catch((error) => console.log(error));
-  }, []);
 
   const handleCta = () => {
     dispatch(
@@ -66,7 +79,7 @@ const Welcome = () => {
 
   return (
     <div className="p-6 bg-slate-50 min-h-screen flex justify-center">
-      <div className="md:w-4/5 lg:w-3/5 2xl:w-1/2">
+      <div className="w-full sm:w-4/5 lg:w-3/5 2xl:w-1/2">
         <h1 className="text-center text-3xl font-semibold text-slate-900">
           Welcome!
         </h1>

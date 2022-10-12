@@ -4,19 +4,20 @@ export const quizSlice = createSlice({
   name: "quiz",
 
   initialState: {
-    questions: [],
     options: {
       amount: 2,
       difficulty: "",
       type: "",
       category: "",
     },
+    questions: [],
+    userAnswers: [],
     score: null,
   },
 
   reducers: {
     setQuestions: (state, action) => {
-      state.questions = [...action.payload];
+      state.questions = action.payload;
     },
     setOptions: (state, action) => {
       state.options = { ...state.options, ...action.payload };
@@ -24,9 +25,13 @@ export const quizSlice = createSlice({
     setScore: (state, action) => {
       state.score = action.payload;
     },
+    setUserAnswers: (state, action) => {
+      state.userAnswers = [...action.payload];
+    },
   },
 });
 
-export const { setQuestions, setOptions, setScore } = quizSlice.actions;
+export const { setQuestions, setOptions, setScore, setUserAnswers } =
+  quizSlice.actions;
 
 export default quizSlice.reducer;
