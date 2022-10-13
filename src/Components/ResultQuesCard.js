@@ -19,15 +19,18 @@ const ResultQuesCard = ({ data, userAnswer }) => {
     } else {
       setState(answerStates.WRONG);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="pt-10 first:pt-4 w-full">
       <div className="rounded-md p-6 bg-white shadow-md shadow-slate-200">
         <div className="flex justify-between items-start gap-x-4">
-          <p className="text-md text-slate-900 font-semibold">
-            {data.question}
-          </p>
+          <p
+            className="text-md text-slate-900 font-semibold"
+            dangerouslySetInnerHTML={{ __html: data.question }}
+          />
+
           <span
             className={`text-xs leading-3 border rounded p-1 font-semibold ${
               state === answerStates.CORRECT
@@ -42,7 +45,7 @@ const ResultQuesCard = ({ data, userAnswer }) => {
         </div>
 
         <div className="grid grid-cols-2 gap-2 mt-4 font-medium">
-          {answers.map((answer) => (
+          {answers.map((answer, i) => (
             <div
               className={`flex justify-between items-center border border-slate-200 rounded p-2 text-sm ${
                 answer === data.correct_answer
@@ -51,8 +54,9 @@ const ResultQuesCard = ({ data, userAnswer }) => {
                   ? "border-red-400 bg-red-100 text-red-600"
                   : "text-slate-400"
               }`}
+              key={i}
             >
-              {answer}
+              <span dangerouslySetInnerHTML={{ __html: answer }} />
               {state === answerStates.WRONG && answer === userAnswer[0] && (
                 <div className="border rounded-full border-red-600 w-6 h-6 flex justify-center items-center">
                   <img

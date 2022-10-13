@@ -57,6 +57,7 @@ const Quiz = () => {
   return (
     <div className="p-6 bg-slate-50 min-h-screen flex justify-center">
       <div className="w-full sm:w-4/5 lg:w-3/5 2xl:w-1/2">
+        {/* Progress Bar */}
         <div className="bg-white mb-6 flex items-center px-4 py-2 shadow-xl rounded-full shadow-slate-200 gap-x-2 md:mb-14">
           <div className="bg-slate-100 grow rounded-full h-3">
             <div
@@ -67,7 +68,7 @@ const Quiz = () => {
             ></div>
           </div>
           <div className="shrink-0 text-xs font-bold text-slate-600">
-            {`${((currentQues + 1) / options.amount) * 100}%`}
+            {currentQues + 1}/{options.amount}
           </div>
         </div>
 

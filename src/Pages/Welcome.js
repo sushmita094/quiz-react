@@ -51,13 +51,14 @@ const Welcome = () => {
   const [difficulty, setDifficulty] = useState(difficulties[0]);
   const [type, setType] = useState(types[0]);
   const [category, setCategory] = useState(categories ? categories[0] : null);
+  const [loader, setLoader] = useState(false);
 
   const options = useSelector((state) => state.quiz.options);
   const dispatch = useDispatch();
 
   let navigate = useNavigate();
 
-  const handleCta = () => {
+  const handleStartQuiz = () => {
     dispatch(
       setOptions({
         difficulty: difficulty.value,
@@ -66,6 +67,7 @@ const Welcome = () => {
       })
     );
 
+    setLoader(true);
     fetch(
       `https://opentdb.com/api.php?amount=${options.amount}&category=${category.id}&difficulty=${difficulty.value}&type=${type.value}`
     )
@@ -74,7 +76,10 @@ const Welcome = () => {
         dispatch(setQuestions(json.results));
         navigate("/quiz");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => {
+        setLoader(false);
+      });
   };
 
   return (
@@ -107,10 +112,11 @@ const Welcome = () => {
           />
 
           <button
-            onClick={handleCta}
+            onClick={handleStartQuiz}
             className="text-lg leading-6 bg-sky-800 text-white w-full py-3 font-semibold rounded-md shadow-lg hover:shadow-xl transition-shadow shadow-slate-300 hover:shadow-slate-300 text-center"
+            disabled={loader}
           >
-            Start Quiz
+            {loader ? "Starting..." : "Start Quiz"}
           </button>
         </div>
       </div>

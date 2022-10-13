@@ -26,7 +26,7 @@ const QuestionCard = ({ question, answer, handleRecordAnswers }) => {
   return (
     <div>
       <p
-        className="font-semibold text-3xl text-slate-900"
+        className="font-semibold text-3xl text-slate-900 break-words"
         dangerouslySetInnerHTML={{ __html: question.question }}
       />
 
