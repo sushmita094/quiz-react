@@ -57,6 +57,7 @@ const QuestionCard = ({ question, answer, handleRecordAnswers }) => {
                 value="true"
                 id="true"
                 name="trueorfalse"
+                checked={answer && answer[0] === "True"}
                 onChange={handleRadioChange}
               />
               <label
@@ -73,6 +74,7 @@ const QuestionCard = ({ question, answer, handleRecordAnswers }) => {
                 value="false"
                 id="false"
                 name="trueorfalse"
+                checked={answer && answer[0] === "False"}
                 onChange={handleRadioChange}
               />
               <label
