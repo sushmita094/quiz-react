@@ -5,7 +5,7 @@ export const quizSlice = createSlice({
 
   initialState: {
     options: {
-      amount: 2,
+      amount: 10,
       difficulty: "",
       type: "",
       category: "",
