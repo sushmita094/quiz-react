@@ -79,17 +79,6 @@ const ResultQuesCard = ({ data, userAnswer }) => {
               )}
             </div>
           ))}
-
-          {/* 
-            Correct answer UI:
-            <div className="border border-red-400 rounded p-2 text-sm">
-              Answer 1
-            </div>
-            Wrong answer UI:
-            <div className="border border-emerald-500 bg-emerald-100 rounded p-2 text-sm">
-              Answer 2
-            </div> 
-            */}
         </div>
       </div>
     </div>

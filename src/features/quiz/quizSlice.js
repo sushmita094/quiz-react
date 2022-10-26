@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const quizSlice = createSlice({
   name: "quiz",
-
   initialState: {
     options: {
       amount: 10,
